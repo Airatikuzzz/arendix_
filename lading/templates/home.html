@@ -1,0 +1,77 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+
+<div class="android-more-section">
+
+  <div class="android-card-container mdl-grid">
+    <div class="mdl-layout mdl-card mdl-shadow--3dp">
+      <div class="mdl-card__supporting-text">
+      <span class="mdl-typography--font-light mdl-typography--subhead" margin-bottom="30px">Площадь</br></span>
+
+      <form action="" method="get">
+        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+          <input class="mdl-textfield__input" type="text" name= "min_square" pattern="-?[0-9]*(\.[0-9]+)?" id="id_min_square">
+          <label class="mdl-textfield__label" for="id_min_square">от...</label>
+          <span class="mdl-textfield__error">Input is not a number!</span>
+        </div>
+        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+          <input class="mdl-textfield__input" type="text" name= "max_square" pattern="-?[0-9]*(\.[0-9]+)?" id="id_max_square">
+          <label class="mdl-textfield__label" for="id_max_square">до...</label>
+          <span class="mdl-textfield__error">Input is not a number!</span>
+        </div>
+        <span class="mdl-typography--font-light mdl-typography--subhead" margin-bottom="30px"></br>Цена за м²</br></span>
+        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+          <input class="mdl-textfield__input" type="text" name= "min_price_per_m2" pattern="-?[0-9]*(\.[0-9]+)?" id="id_min_price_per_m2">
+          <label class="mdl-textfield__label" for="id_min_price_per_m2">от...</label>
+          <span class="mdl-textfield__error">Input is not a number!</span>
+        </div>
+        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+          <input class="mdl-textfield__input" type="text" name= "min_price_per_m2" pattern="-?[0-9]*(\.[0-9]+)?" id="id_max_price_per_m2">
+          <label class="mdl-textfield__label" for="id_max_price_per_m2">до...</label>
+          <span class="mdl-textfield__error">Input is not a number!</span>
+        </div>
+        <span class="mdl-typography--font-light mdl-typography--subhead" margin-bottom="30px"></br>Цена</br></span>
+        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+          <input class="mdl-textfield__input" type="text" name= "min_price" pattern="-?[0-9]*(\.[0-9]+)?" id="id_min_price">
+          <label class="mdl-textfield__label" for="id_min_price">от...</label>
+          <span class="mdl-textfield__error">Input is not a number!</span>
+        </div>
+        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+          <input class="mdl-textfield__input" type="text" name= "max_price" pattern="-?[0-9]*(\.[0-9]+)?" id="id_max_price">
+          <label class="mdl-textfield__label" for="id_max_price">до...</label>
+          <span class="mdl-textfield__error">Input is not a number!</span>
+        </div>
+      </br>
+
+        <input type="submit" value="Показать" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect"/>
+
+      </form>
+
+    </div>
+  </div>
+  </div>
+
+  <div class="android-card-container mdl-grid">
+    {% for room_image in rooms%}
+    <div class="mdl-cell mdl-cell--3-col mdl-cell--4-col-tablet mdl-cell--4-col-phone mdl-card mdl-shadow--3dp">
+        <div class="mdl-card__media">
+          <img src="{{ room_image.image.url }}">
+        </div>
+        <div class="mdl-card__title">
+           <h4 class="mdl-card__title-text">{{room_image.room.name}}</h4>
+        </div>
+        <div class="mdl-card__supporting-text">
+          <span class="mdl-typography--font-light mdl-typography--subhead">{{room_image.room.description}}</span>
+        </div>
+        <div class="mdl-card__actions">
+           <a class="android-link mdl-button mdl-js-button mdl-typography--text-uppercase" href="{% url 'room_detail' pk=room_image.pk %}">Просмотреть
+           </a>
+        </div>
+      </div>
+      {% endfor %}
+      </div>
+  </div>
+  {% endblock %}

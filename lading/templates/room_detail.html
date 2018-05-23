@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="android-more-section">
+
+
+            <section class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp" >
+              <div class="section__play-btn mdl-cell mdl-cell--4-col-desktop mdl-cell--2-col-tablet mdl-cell--4-col-phone mdl-color--teal-100 mdl-color-text--white">
+                  <img src="{{ room_image.image.url }} " width="400px" height="300px">
+              </div>
+              <div class="mdl-card mdl-cell mdl-cell--middle mdl-cell--9-col-desktop mdl-cell--6-col-tablet mdl-cell--4-col-phone">
+                <div class="mdl-card__title">
+                   <h4 class="mdl-card__title-text">{{room_image.room.name}}</h4>
+                </div>
+                <div class="mdl-card__supporting-text">
+                  <span class="mdl-typography--font-light mdl-typography--subhead">Описание — {{room_image.room.description}}</span>
+                </div>
+                <div class="mdl-card__supporting-text">
+                  <span class="mdl-typography--font-light mdl-typography--subhead">Статус — {{room_image.room.status}}</span>
+                </div>
+                <div class="mdl-card__supporting-text">
+                  <span class="mdl-typography--font-light mdl-typography--subhead">Площадь — {{room_image.room.square}}</span>
+                </div>
+                <div class="mdl-card__supporting-text">
+                  <span class="mdl-typography--font-light mdl-typography--subhead">Цена за м2 — {{room_image.room.price_per_m2}}</span>
+                </div>
+                <div class="mdl-card__supporting-text">
+                  <span class="mdl-typography--font-light mdl-typography--subhead">Общая стоимость — {{room_image.room.price}}</span>
+                </div>
+                <div class="mdl-card__supporting-text">
+                  <span class="mdl-typography--font-light mdl-typography--subhead">Комментарии — {{room_image.room.comments}}</span>
+                </div>
+                <div class="mdl-card__actions">
+                  {% ifequal room_image.room.status.pk 2 %}
+                   <a class="android-link mdl-button mdl-js-button mdl-typography--text-uppercase" href="{% url 'room_detail' pk=room_image.pk %}">
+                     Забронировать
+                   </a>
+                  {% endifequal %}
+                  {% ifequal room_image.room.status.pk 3 %}
+                  <a class="mdl-button mdl-js-button mdl-button--raised" disabled>
+                   Забронировать
+                  </a>
+                  {% endifequal %}                </div>
+              </div>
+
+
+
+
+  </div>
+
+</div>
+
+
+
+{% endblock %}

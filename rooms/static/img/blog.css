@@ -1,0 +1,18 @@
+body {
+  min-height: 75rem;
+  font-family: Roboto;
+  background: grey;
+}
+.room-item{
+  margin-top: 20px;
+  height: 400px;
+  background-color: white;
+  position: relative;
+  padding: 5px;
+  text-align: center;
+}
+.add-to-cart-btn{
+  position: absolute;
+  left: 23%;
+  bottom: 10px;
+}
