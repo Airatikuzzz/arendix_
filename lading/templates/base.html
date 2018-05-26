@@ -47,6 +47,7 @@
     <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
 
       <div class="android-header mdl-layout__header mdl-layout__header--waterfall">
+
         <div class="mdl-layout__header-row">
           <span class="android-title mdl-layout-title">
             <img class="android-logo-image" src="{% static 'images/android-logokek.png' %}">
@@ -55,30 +56,45 @@
           <div class="android-header-spacer mdl-layout-spacer"></div>
 
 
-          <div class="android-search-box mdl-textfield mdl-js-textfield mdl-textfield--expandable mdl-textfield--floating-label mdl-textfield--align-right mdl-textfield--full-width">
-            <label class="mdl-button mdl-js-button mdl-button--icon" for="search-field">
-              <i class="material-icons">search</i>
-            </label>
-            <div class="mdl-textfield__expandable-holder">
-              <input class="mdl-textfield__input" type="text" id="search-field">
-            </div>
-          </div>
           <!-- Navigation -->
           <div class="android-navigation-container">
             <nav class="android-navigation mdl-navigation">
+
               <a class="mdl-navigation__link mdl-typography--text-uppercase" href="{%url 'home'%}">Помещения</a>
               <a class="mdl-navigation__link mdl-typography--text-uppercase" href="{%url 'scheme'%}">Схема</a>
               <a class="mdl-navigation__link mdl-typography--text-uppercase" href="">Корзина</a>
               <a class="mdl-navigation__link mdl-typography--text-uppercase" href="{%url 'about'%}">О компании</a>
+
+              <button id="demo-menu-lower-right"
+                      class="mdl-button mdl-js-button mdl-button--icon">
+                <i class="material-icons">more_vert</i>
+              </button>
+
+              <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect"
+                  for="demo-menu-lower-right">
+                  {%if username %}
+                    <a class="mdl-menu__item" href="{%url 'logout'%}">Выйти({{username}})</a>
+                  {% else %}
+                    <a class="mdl-menu__item" href="{%url 'login'%}">Войти</a>
+                  {%endif%}
+                  {% if user.is_authenticated %}
+                  <a class="mdl-menu__item" href="{%url 'add_room'%}">Добавить помещение</a>
+                  {%endif%}
+              </ul>
             </nav>
+
           </div>
+
         </div>
+
       </div>
 
 
 
       {% block content %}
-      {% endblock content %}
+      {% endblock %}
+      {% block login %}
+      {% endblock %}
 
 
       </div>

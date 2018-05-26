@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block login %}
+<div class="android-more-section">
+
+  <div class="android-card-container mdl-grid">
+    <div class="mdl-layout mdl-card mdl-shadow--3dp">
+      <div class="mdl-card__supporting-text">
+
+      <form action="/auth/login/" method="post">
+        {% csrf_token %}
+      <span class="mdl-typography--font-light mdl-typography--subhead" for="username" margin-bottom="30px"></br>Логин</br></span>
+
+      <div class="mdl-textfield mdl-js-textfield">
+        <input class="mdl-textfield__input" type="text" name = "username" id="username">
+        <span class="mdl-textfield__error">Input is not a number!</span>
+      </div>
+      </br>
+      <span class="mdl-typography--font-light mdl-typography--subhead" for="password" margin-bottom="30px"></br>Пароль</br></span>
+
+      <div class="mdl-textfield mdl-js-textfield">
+        <input class="mdl-textfield__input" type="password" name="password" id="password">
+        <span class="mdl-textfield__error">Input is not a number!</span>
+      </div>
+      </br>
+
+      <input type="submit" value="Войти" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored"/>
+
+      {%if login_error %}
+        <label class="error">{{login_error}}</label>
+      {%endif%}
+      </form>
+      </div>
+  </div>
+</div>
+
+
+{% endblock %}

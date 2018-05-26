@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'orders',
     'rooms',
     'lading',
+    'loginsys',
 ]
 
 MIDDLEWARE = [
