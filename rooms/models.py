@@ -42,7 +42,7 @@ class Room(models.Model):
 
 class RoomImage(models.Model):
     room = models.ForeignKey(Room,blank=True,null=True,default=None)
-    image = models.ImageField(upload_to="static/media/product_images/")
+    image = models.ImageField()
     created_date = models.DateTimeField(auto_now_add=True, auto_now = False)
     updated_date = models.DateTimeField(auto_now_add=False, auto_now = True)
 

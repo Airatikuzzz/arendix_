@@ -1,6 +1,6 @@
-from django.shortcuts import render, get_object_or_404
-from rooms.models import RoomImage
-from rooms.forms import RoomsFilterForm
+from django.shortcuts import render, get_object_or_404, redirect
+from rooms.models import RoomImage, Room, Status
+from rooms.forms import RoomsFilterForm, RoomImageForm
 from django.contrib import auth
 
 # Create your views here.
@@ -31,4 +31,25 @@ def scheme(request):
 def about(request):
     return render(request, 'about.html', {"username": auth.get_user(request).username})
 def add_room(request):
-    return render(request, 'add_room.html', {"username": auth.get_user(request).username})
+    print(request.POST)
+    form = RoomImageForm()
+    print(request.method)
+
+    if request.method == "POST":
+        form = RoomImageForm(request.POST)
+        #print(form)
+        room = Room()
+        room.name = request.POST.get('name')
+        room.description = request.POST.get('description')
+        room.square = request.POST.get('square')
+        room.price_per_m2 = request.POST.get('price_per_m2')
+        room.price = request.POST.get('price')
+        room.comments = request.POST.get('comments')
+        room.status = get_object_or_404(Status, pk=2)
+        room.save()
+        roomImage = RoomImage()
+        roomImage.room = get_object_or_404(Room, pk=room.pk)
+        roomImage.image = request.POST.get('image')
+        roomImage.save()
+        return redirect('/')
+    return render(request, 'add_room.html', {"form":form,"username": auth.get_user(request).username})
