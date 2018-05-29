@@ -24,7 +24,7 @@ def home(request):
     return render(request, 'home.html', context)
 def room_detail(request, pk):
     room = get_object_or_404(RoomImage, pk=pk)
-    return render(request, 'room_detail.html', {'room_image': room, "username": auth.get_user(request).username})
+    return render(request, 'room_detail1.html', {'room_image': room, "username": auth.get_user(request).username})
 def scheme(request):
     rooms = RoomImage.objects.all;
     return render(request, 'scheme.html', {"rooms": rooms, "username": auth.get_user(request).username})

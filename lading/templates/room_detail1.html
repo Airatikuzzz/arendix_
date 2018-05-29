@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="android-more-section">
+
+
+  <div class="mdl-layout mdl-js-layout mdl-card mdl-shadow--3dp mdl-color--white">
+    <div class="mdl-card mdl-cell mdl-cell--middle mdl-cell--9-col-desktop mdl-cell--6-col-tablet mdl-cell--4-col-phone">
+      <img src="{{ room_image.image.url }} " width="400px" height="300px">
+    </div>
+
+                <div class="mdl-card__title mdl-card--border">
+                   <h4 class="mdl-card__title-text">{{room_image.room.name}}</h4>
+                </div>
+                <div class="mdl-card__supporting-text mdl-card--border">
+                  <span class="mdl-typography--font-light mdl-typography--subhead">
+                    <h5>Описание</h5>
+                    {{room_image.room.description}}</span>
+                </div>
+                <div class="mdl-card__supporting-text mdl-card--border">
+                  <span class="mdl-typography--font-light mdl-typography--subhead">
+                    <h5>Статус</h5>
+                    {{room_image.room.status}}</span>
+                </div>
+                <div class="mdl-card__supporting-text mdl-card--border">
+                  <span class="mdl-typography--font-light mdl-typography--subhead">
+                    <h5>Площадь</h5>
+                    {{room_image.room.square}}</span>
+                </div>
+                <div class="mdl-card__supporting-text mdl-card--border">
+                  <span class="mdl-typography--font-light mdl-typography--subhead">
+                    <h5>Цена за м2</h5>
+                    {{room_image.room.price_per_m2}}</span>
+                </div>
+                <div class="mdl-card__supporting-text mdl-card--border">
+                  <span class="mdl-typography--font-light mdl-typography--subhead">
+                    <h5>Общая стоимость</h5>
+                    {{room_image.room.price}}</span>
+                </div>
+                <div class="mdl-card__supporting-text ">
+                  <span class="mdl-typography--font-light mdl-typography--subhead">
+                    <h5>Комментарии</h5>
+                    {{room_image.room.comments}}</span>
+                </div>
+                <div class="mdl-card__actions mdl-card--border">
+                  {% ifequal room_image.room.status.pk 2 %}
+                   <a class="mdl-button mdl-js-button mdl-button--primary" href="{% url 'room_detail' pk=room_image.pk %}">
+                     Забронировать
+                   </a>
+                  {% endifequal %}
+                  {% ifequal room_image.room.status.pk 3 %}
+                  <a class="mdl-button mdl-js-button mdl-button--primary" disabled>
+                   Забронировать
+                  </a>
+                  {% endifequal %}                </div>
+              </div>
+
+
+
+
+  </div>
+
+</div>
+
+
+
+{% endblock %}
