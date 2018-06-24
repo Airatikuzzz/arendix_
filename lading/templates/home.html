@@ -68,6 +68,10 @@
         <div class="mdl-card__supporting-text">
           <span class="mdl-typography--font-light mdl-typography--subhead">{{room_image.room.description}}</span>
         </div>
+        
+        <div class="mdl-card__supporting-text">
+          <span class="mdl-typography--font-light mdl-typography--subhead">Арендатор : {{room_image.room.user.username}}</span>
+        </div>
         <div class="mdl-card__actions">
            <a class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--primary" href="{% url 'room_detail' pk=room_image.pk %}">Просмотреть
            </a>

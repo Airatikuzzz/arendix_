@@ -3,6 +3,7 @@
 from __future__ import unicode_literals
 
 from django.db import models
+from django.contrib.auth.models import User
 
 # Create your models here.
 class Status(models.Model):
@@ -29,6 +30,7 @@ class Room(models.Model):
     comments = models.TextField()
 
     status = models.ForeignKey(Status)
+    user = models.ForeignKey(User, null=True)
 
     created_date = models.DateTimeField(auto_now_add=True, auto_now = False)
     updated_date = models.DateTimeField(auto_now_add=False, auto_now = True)

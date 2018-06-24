@@ -17,7 +17,7 @@ def home(request):
         if form.cleaned_data["max_price_per_m2"]:
             rooms = rooms.filter(room__price_per_m2__lte=form.cleaned_data["max_price_per_m2"])
         if form.cleaned_data["min_price"]:
-            rooms = rooms.filter(room__price__gte=form.cleaned_data["max_price"])
+            rooms = rooms.filter(room__price__gte=form.cleaned_data["min_price"])
         if form.cleaned_data["max_price"]:
             rooms = rooms.filter(room__price__lte=form.cleaned_data["max_price"])
     context = {"rooms": rooms, "form": form, "username": auth.get_user(request).username}
@@ -31,13 +31,9 @@ def scheme(request):
 def about(request):
     return render(request, 'about.html', {"username": auth.get_user(request).username})
 def add_room(request):
-    print(request.POST)
     form = RoomImageForm()
-    print(request.method)
-
     if request.method == "POST":
         form = RoomImageForm(request.POST)
-        #print(form)
         room = Room()
         room.name = request.POST.get('name')
         room.description = request.POST.get('description')
@@ -53,3 +49,10 @@ def add_room(request):
         roomImage.save()
         return redirect('/')
     return render(request, 'add_room.html', {"form":form,"username": auth.get_user(request).username})
+def bron(request, pk):
+    room_image = get_object_or_404(RoomImage, pk=pk)
+    print(room_image)
+    room_image.room.user = auth.get_user(request)
+    room_image.room.save()
+    room_image.save()
+    return redirect('/')

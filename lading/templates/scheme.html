@@ -44,7 +44,7 @@
 		<polygon data-id="31" points="606,292 647,292 647,364 606,364"></polygon>
 	</svg>
 {% for room_image in rooms%}
-	<div class="scheme-item" data-id="{{room_image.pk}}" style="top: 360px; left:300px;">
+	<div class="scheme-item" data-id="{{room_image.pk}}" style="top: 60px; left:800px;">
 		<div class="scheme-name"></div>
 		<div class="scheme-popup" text-align="center">
 			<div class="mdl-card__title">
@@ -63,10 +63,11 @@
 			 Забронировать
 		 </a>
 		 {% endifequal %}
-
 		</div>
 	</div>
-{%endfor%}
+	{%endfor%}
+
+</div>
 
 <style type="text/css">
 /* Полигоны магазинов */
