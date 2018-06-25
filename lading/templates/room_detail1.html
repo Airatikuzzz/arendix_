@@ -19,6 +19,7 @@
                     {{room_image.room.user.username}}</br>
                     {{ room_image.room.user.first_name}}
                     {{ room_image.room.user.last_name}}</span>
+
                 </div>
                 <div class="mdl-card__supporting-text mdl-card--border">
                   <span class="mdl-typography--font-light mdl-typography--subhead">
@@ -61,6 +62,14 @@
                    Забронировать
                   </a>
                   {% endifequal %}                </div>
+                  <div class="mdl-card__actions mdl-card--border">
+                    {% ifequal room_image.room.user.username username %}
+                     <a class="mdl-button mdl-js-button mdl-button--primary" href="{% url 'unbron' pk=room_image.pk %}">
+                       Снять бронь
+                     </a>
+
+                     {% endifequal %}
+                   </div>
               </div>
 
 

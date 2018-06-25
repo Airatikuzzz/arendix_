@@ -56,3 +56,10 @@ def bron(request, pk):
     room_image.room.save()
     room_image.save()
     return redirect('/')
+def unbron(request, pk):
+    room_image = get_object_or_404(RoomImage, pk=pk)
+    print(room_image)
+    room_image.room.user = None
+    room_image.room.save()
+    room_image.save()
+    return redirect('/')
